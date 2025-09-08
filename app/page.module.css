@@ -19,3 +19,112 @@
   box-shadow: 0 0 2px var(--primary-grad), 0 0 3px var(--secondary-grad),
     0 0 3px var(--primary-grad);
 }
+
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #ffffff22, #ffffff00 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.drop {
+  position: fixed;
+  top: -100px; /* start above view */
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  animation: fall linear infinite;
+  height: 100%;
+}
+
+.square {
+  width: 3px;
+  height: 15px;
+  background: #d7f20d;
+  box-shadow: 0 0 6.26px 0.89px #3affa373, 0 0 32.21px 7.16px #3affa326;
+  opacity: 0.076;
+  animation: wave var(--duration) ease-in-out infinite;
+}
+
+/* stagger the phase so the highlight travels down */
+.square:nth-child(1) {
+  animation-delay: calc(var(--delay) * -0);
+}
+.square:nth-child(2) {
+  animation-delay: calc(var(--delay) * 1);
+}
+.square:nth-child(3) {
+  animation-delay: calc(var(--delay) * 2);
+}
+.square:nth-child(4) {
+  animation-delay: calc(var(--delay) * 3);
+}
+.square:nth-child(5) {
+  animation-delay: calc(var(--delay) * 4);
+}
+.square:nth-child(6) {
+  animation-delay: calc(var(--delay) * 5);
+}
+.square:nth-child(7) {
+  animation-delay: calc(var(--delay) * 6);
+}
+.square:nth-child(8) {
+  animation-delay: calc(var(--delay) * 7);
+}
+.square:nth-child(9) {
+  animation-delay: calc(var(--delay) * 8);
+}
+
+/* the opacity “vector” that shifts along every element */
+@keyframes wave {
+  /* trail values from dim → bright → dim */
+  0% {
+    opacity: 0.962;
+  }
+  11.11% {
+    opacity: 0.538;
+  }
+  22.22% {
+    opacity: 0.228;
+  }
+  33.33% {
+    opacity: 0.1076;
+  }
+  44.44% {
+    opacity: 0.076;
+  }
+  55.55% {
+    opacity: 0.1076;
+  }
+  66.66% {
+    opacity: 0.228;
+  }
+  77.77% {
+    opacity: 0.538;
+  }
+  88.88% {
+    opacity: 0.962;
+  }
+  100% {
+    opacity: 0.962;
+  }
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0.3;
+  }
+}
