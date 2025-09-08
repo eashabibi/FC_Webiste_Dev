@@ -1,8 +1,21 @@
 .page {
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
   min-height: 100svh;
-  padding: 30px;
+}
+
+.outlineBtn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background: linear-gradient(var(--footer-bg), var(--footer-bg)) padding-box,
+    linear-gradient(90deg, var(--primary-grad), var(--secondary-grad))
+      border-box;
+  color: var(--white);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.outlineBtn:hover {
+  box-shadow: 0 0 2px var(--primary-grad), 0 0 3px var(--secondary-grad),
+    0 0 3px var(--primary-grad);
 }
