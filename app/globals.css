@@ -11,6 +11,9 @@
   --primary-grad: #d7f20d;
   --secondary-grad: #028559;
   --anchor-grey: #ffffff1a;
+  --steps: 9; /* how many squares */
+  --duration: 1800ms; /* speed of the wave */
+  --delay: calc(var(--duration) / var(--steps));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +30,9 @@
     --primary-grad: #d7f20d;
     --secondary-grad: #028559;
     --anchor-grey: #ffffff1a;
+    --steps: 9; /* how many squares */
+    --duration: 1800ms; /* speed of the wave */
+    --delay: calc(var(--duration) / var(--steps));
   }
 }
 
