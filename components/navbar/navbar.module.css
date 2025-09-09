@@ -2,23 +2,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: var(--navbar-bg);
+  padding: 1rem 3rem;
+  background: var(--navbar-bg);
   color: var(--foreground);
-  height: 80px;
+  height: 50px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid var(--navbar-bg-border);
+  backdrop-filter: blur(8px);
+  width: 700px;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
 }
 
 .navbar ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 6rem;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .navbar li {
   cursor: pointer;
   transition: color 0.3s;
+  position: relative;
 }
 
 .navbar li:hover {
@@ -26,6 +38,62 @@
 }
 
 .navbar img {
-  height: 50px;
+  height: 55px;
   width: auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.logo:hover {
+  transform: rotate(90deg);
+}
+
+.navItem {
+  position: relative;
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar li:hover > .navItem {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.hoverContent {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar li:hover .hoverContent {
+  top: 0;
+  opacity: 1;
+  transform: translateY(-2px);
+  pointer-events: auto;
+}
+
+.hoverIndicator {
+  height: 6px;
+  width: 6px;
+  background-color: var(--primary);
+  box-shadow: 0 0 6px var(--primary), 0 0 12px var(--primary);
+  backdrop-filter: blur(4px);
+  margin-bottom: 4px;
+  transition: all 0.3s ease-in-out;
 }

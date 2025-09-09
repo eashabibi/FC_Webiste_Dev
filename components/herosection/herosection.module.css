@@ -1,0 +1,41 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+/* Content */
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: var(--grey);
+}
+
+.buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
