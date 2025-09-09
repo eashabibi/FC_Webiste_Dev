@@ -7,7 +7,7 @@
   text-align: center;
   overflow: hidden;
 }
-/* Content */
+
 .content {
   position: relative;
   z-index: 1;
@@ -38,4 +38,37 @@
   display: flex;
   gap: 1.5rem;
   justify-content: center;
+}
+
+/* ✅ QR Hover Wrapper */
+.qrWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.qrImage {
+  position: absolute;
+  top: -130px; /* show above button */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000; /* keep it on top */
+}
+
+.qrWrapper:hover .qrImage {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+/* ✅ Responsive: show below on small screens */
+@media (max-width: 640px) {
+  .qrImage {
+    top: auto;
+    bottom: -140px;
+  }
 }

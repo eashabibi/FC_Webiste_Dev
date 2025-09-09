@@ -1,0 +1,94 @@
+/* Wrapper holds heading + box */
+.partnersWrapper {
+  text-align: center;
+  margin: 10rem 0; /* desktop spacing */
+}
+
+@media (max-width: 768px) {
+  .partnersWrapper {
+    margin: 6rem 0; /* tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .partnersWrapper {
+    margin: 4rem 0; /* mobile */
+  }
+}
+
+/* ✅ Title aligned with Figma spec */
+.title {
+  font-size: 1rem; /* 16px base */
+  font-weight: 600; /* SemiBold */
+  line-height: 100%; /* exact as Figma */
+  letter-spacing: 0;
+  color: var(--partner-title);
+  margin-bottom: 1rem;
+}
+
+/* Partners section box */
+.partnersSection {
+  position: relative;
+  background: var(--partner-bg);
+  padding: 1.5rem 0;
+  overflow: hidden;
+  border-radius: 8px; /* optional */
+}
+
+/* Glow behind logos */
+.glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    var(--partner-glow),
+    transparent 70%
+  );
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Scrolling slider */
+.slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.slideTrack {
+  display: flex;
+  width: calc(200px * 10);
+  animation: scroll 30s linear infinite;
+}
+
+.slide {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 1;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
