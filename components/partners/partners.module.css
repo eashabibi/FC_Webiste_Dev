@@ -38,23 +38,22 @@
 /* Glow behind logos */
 .glow {
   position: absolute;
-  bottom: 0;               /* anchor at bottom */
-  left: 50%;
   transform: translateX(-50%); /* keep centered */
-  width: 500px;
-  height: 220px;
+  width: 862.5px;
+  height: 287.5px;
+  opacity: 0.9;
   background: radial-gradient(
-    ellipse at bottom, /* ⬅️ anchor gradient at bottom */
-    rgba(215, 242, 13, 0.35) 0%,   /* bright lime at base */
-    rgba(215, 242, 13, 0.18) 30%,  /* mid fade */
-    rgba(215, 242, 13, 0.08) 55%,  /* softer edges */
-    transparent 80%                /* fade out upwards */
+    60.09% 180.28% at 50% 100%,
+    #d7f20d 0%,
+    rgba(215, 242, 13, 0) 70%
   );
+  position: absolute;
+  top: 70px;
+  left: 50%;
   filter: blur(60px);
   pointer-events: none;
   z-index: 1;
 }
-
 
 /* Scrolling slider */
 .slider {
