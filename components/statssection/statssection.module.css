@@ -1,0 +1,116 @@
+.statsWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.statsBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1rem 1.6rem;
+  border: 1px solid var(--navbar-bg-border);
+  max-width: 900px;
+  width: 100%;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✅ Smoky top highlight */
+.statsBox::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 16px; /* ⬅️ slim highlight */
+  background: var(--stats-smoky-glow);
+  border-radius: 16px 16px 0 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.statItem {
+  flex: 1 1 30%;
+  text-align: center;
+  padding: 0.3rem;
+  border-right: 1px solid var(--navbar-bg-border);
+  position: relative;
+  z-index: 2;
+}
+
+.statItem:last-child {
+  border-right: none;
+}
+
+.value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.2rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: var(--grey);
+}
+
+/* ✅ Medium screens */
+@media (max-width: 1024px) {
+  .statsBox {
+    padding: 0.8rem 1.2rem;
+  }
+
+  .value {
+    font-size: 1.4rem;
+  }
+
+  .label {
+    font-size: 0.8rem;
+  }
+}
+
+/* ✅ Small screens */
+@media (max-width: 768px) {
+  .statsBox {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .statItem {
+    border-right: none;
+    border-bottom: 1px solid var(--navbar-bg-border);
+    width: 100%;
+    padding: 0.4rem 0;
+  }
+
+  .statItem:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ✅ Extra small screens */
+@media (max-width: 480px) {
+  .statsWrapper {
+    padding: 1.2rem 0.5rem;
+  }
+
+  .statsBox {
+    padding: 0.8rem;
+    border-radius: 12px;
+  }
+
+  .value {
+    font-size: 1.2rem;
+  }
+
+  .label {
+    font-size: 0.75rem;
+  }
+}

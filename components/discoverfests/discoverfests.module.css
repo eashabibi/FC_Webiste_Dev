@@ -1,0 +1,247 @@
+.discover {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  padding: 6rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+.logo {
+  width: 120px;
+  margin-bottom: 2rem;
+  display: block;
+  margin-left: 150px;
+}
+
+/* ---------------- Toggle Buttons ---------------- */
+
+/* ---------------- Toggle Buttons ---------------- */
+
+.toggleGroup {
+  display: inline-flex;
+  position: relative;
+  background: #1a1a1a;
+  border-radius: 30px;
+  padding: 4px;
+  overflow: hidden;
+}
+
+/* Sliding background pill */
+.toggleGroup::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px); /* half width */
+  border-radius: 30px;
+  background: #0b3d2e; /* ✅ flat green */
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+/* Active states: slide left/right */
+.toggleGroup.students::before {
+  transform: translateX(0%);
+}
+.toggleGroup.colleges::before {
+  transform: translateX(100%);
+}
+
+.toggleBtn {
+  position: relative;
+  flex: 1;
+  min-width: 120px;       /* ✅ ensures enough space for text */
+  white-space: nowrap;    /* ✅ prevents text wrapping */
+  padding: 0.6rem 1.8rem;
+  border: none;
+  border-radius: 30px;
+  background: transparent;
+  color: #aaa;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  z-index: 2; /* above background pill */
+}
+
+
+.toggleBtn:hover {
+  color: #fff;
+}
+
+.toggleBtn.active {
+  color: #fff;
+}
+
+.content {
+  flex: 1;
+  text-align: left;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.subheading {
+  font-size: 1.1rem;
+  color: var(--grey);
+  line-height: 1.6;
+  max-width: 500px;
+  margin-bottom: 2.5rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.studentBtn {
+  padding: 0.75rem 1.8rem;
+  border-radius: 25px;
+  border: none;
+  background: var(--secondary-grad);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.studentBtn:hover {
+  background: #02a36f;
+}
+
+.collegeBtn {
+  padding: 0.75rem 1.8rem;
+  border-radius: 25px;
+  border: none;
+  background: #1c1c1c;
+  color: var(--grey);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.collegeBtn:hover {
+  background: #2a2a2a;
+  color: var(--white);
+}
+
+.phoneWrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.phone {
+  width: 340px;
+  transform: rotate(-8deg); /* slant the phone */
+  z-index: 2;
+  filter: drop-shadow(0px 12px 30px rgba(0, 0, 0, 0.8));
+}
+
+/* Emojis around phone */
+.emoji {
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  width: 60px;
+  z-index: 3;
+}
+
+.mirror {
+  position: absolute;
+  bottom: 20%;
+  left: 8%;
+  width: 50px;
+  z-index: 3;
+}
+
+.fire {
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+  width: 55px;
+  z-index: 3;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 1024px) {
+  .discover {
+    flex-direction: column;
+    text-align: center;
+    gap: 3rem;
+  }
+
+  .content {
+    text-align: center;
+  }
+
+  .subheading {
+    margin: 0 auto 2rem;
+  }
+
+  .phone {
+    width: 280px;
+    transform: rotate(-6deg);
+  }
+
+  .emoji {
+    top: 10%;
+    right: 15%;
+    width: 45px;
+  }
+
+  .mirror {
+    bottom: 18%;
+    left: 15%;
+    width: 40px;
+  }
+
+  .fire {
+    bottom: 5%;
+    right: 15%;
+    width: 45px;
+  }
+}
+
+@media (max-width: 640px) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .subheading {
+    font-size: 1rem;
+  }
+
+  .phone {
+    width: 230px;
+    transform: rotate(-5deg);
+  }
+
+  .emoji {
+    top: 8%;
+    right: 12%;
+    width: 38px;
+  }
+
+  .mirror {
+    bottom: 15%;
+    left: 10%;
+    width: 35px;
+  }
+
+  .fire {
+    bottom: 2%;
+    right: 12%;
+    width: 38px;
+  }
+}

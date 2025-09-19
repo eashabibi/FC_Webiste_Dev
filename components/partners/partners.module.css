@@ -1,7 +1,7 @@
 /* Wrapper holds heading + box */
 .partnersWrapper {
   text-align: center;
-  margin: 10rem 0; /* desktop spacing */
+  margin: 8rem 0; /* desktop spacing */
 }
 
 @media (max-width: 768px) {
@@ -23,7 +23,7 @@
   line-height: 100%; /* exact as Figma */
   letter-spacing: 0;
   color: var(--partner-title);
-  margin-bottom: 1rem;
+  margin-bottom: 5rem; /* ⬅️ space below heading */
 }
 
 /* Partners section box */
@@ -38,21 +38,23 @@
 /* Glow behind logos */
 .glow {
   position: absolute;
-  top: 50%;
+  bottom: 0;               /* anchor at bottom */
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 800px;
-  border-radius: 50%;
+  transform: translateX(-50%); /* keep centered */
+  width: 500px;
+  height: 220px;
   background: radial-gradient(
-    circle at center,
-    var(--partner-glow),
-    transparent 70%
+    ellipse at bottom, /* ⬅️ anchor gradient at bottom */
+    rgba(215, 242, 13, 0.35) 0%,   /* bright lime at base */
+    rgba(215, 242, 13, 0.18) 30%,  /* mid fade */
+    rgba(215, 242, 13, 0.08) 55%,  /* softer edges */
+    transparent 80%                /* fade out upwards */
   );
-  filter: blur(100px);
+  filter: blur(60px);
   pointer-events: none;
   z-index: 1;
 }
+
 
 /* Scrolling slider */
 .slider {

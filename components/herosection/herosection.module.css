@@ -2,10 +2,35 @@
   position: relative;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column; /* stack content + stats */
+  justify-content: space-between; /* text top, stats bottom */
   align-items: center;
   text-align: center;
   overflow: hidden;
+  padding: 4rem 2rem; /* ✅ breathing space */
+}
+
+/* ✅ Brighter but still soft white glow */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 700px;
+  transform: translate(-50%, -50%);
+  background: var(--spotlight-glow);
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(80px);
+}
+.statsWrapperInsideHero {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 .content {
@@ -13,6 +38,7 @@
   z-index: 1;
   max-width: 800px;
   padding: 0 20px;
+  margin: auto 0; /* ✅ keeps content centered */
 }
 
 .title {
@@ -56,7 +82,7 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 1000; /* keep it on top */
+  z-index: 1000;
 }
 
 .qrWrapper:hover .qrImage {
@@ -70,5 +96,13 @@
   .qrImage {
     top: auto;
     bottom: -140px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
   }
 }

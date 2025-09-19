@@ -1,0 +1,143 @@
+.organiserSection {
+  position: relative;
+  text-align: center;
+  padding: 3rem 2rem 5rem;
+  background: transparent;
+  overflow: hidden;
+  z-index: 1;
+
+  margin-top: 12rem; /* pushes whole section down */
+}
+
+.organiserSection::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ✅ Spotlight Glow Effect */
+.organiserSection::after {
+  content: "";
+  position: absolute;
+  top: 60%; /* ⬅️ moved down so it sits behind grid of cards */
+  left: 50%;
+  width: 1000px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    transparent 60%
+  );
+  filter: blur(85px); /* slightly stronger blur for smoothness */
+  opacity: 0.9; /* overall brighter */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.heading,
+.grid {
+  position: relative;
+  z-index: 2; /* keep content above glow */
+}
+
+.heading {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #c7c7c7;
+  margin-bottom: 6rem;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.card {
+  flex: 1 1 calc(25% - 2rem);
+  max-width: 280px;
+  background: #141414; /* default dark */
+  border: 1px solid #2e2e2e;
+  border-radius: 12px;
+  padding: 2.5rem 1.5rem 1.5rem;
+  text-align: center;
+  position: relative;
+
+  /* resting shadow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+
+  /* ⚡ much faster transition */
+  transition: transform 0.08s linear, box-shadow 0.08s linear,
+    border 0.08s linear, background 0.08s linear;
+}
+
+/* ✨ Hover effect: pop forward but move DOWN */
+.card:hover {
+  background: #1f1f1f; /* slightly brighter */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  /* move downward */
+  transform: translateY(8px);
+
+  /* stronger shadow */
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.75),
+    0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+.avatarWrapper {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name {
+  margin-top: 2.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #d1ff3c;
+}
+
+.college {
+  font-size: 0.9rem;
+  color: #f5f5f5;
+  margin-bottom: 0.8rem;
+}
+
+.feedback {
+  font-size: 0.9rem;
+  color: #c7c7c7;
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    flex: 1 1 calc(50% - 2rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+.grid .card:nth-child(n + 5) {
+  margin-top: 2.5rem;
+}

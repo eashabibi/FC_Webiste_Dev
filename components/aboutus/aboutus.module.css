@@ -1,0 +1,187 @@
+.about {
+  position: relative;
+  text-align: center;
+  padding: 6rem 2rem; /* more breathing space */
+  overflow: hidden;
+  z-index: 1;
+}
+
+.about::before {
+  content: "";
+  position: absolute;
+  top: 65%; /* ⬅️ moved further down (was 40%) */
+  left: 50%;
+  width: 900px;
+  height: 400px; /* a bit taller to cover all 4 boxes */
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    transparent 80%
+  );
+  filter: blur(80px);
+  opacity: 0.8;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px; /* adjust until the glow line disappears */
+  background: var(--background); /* same as page background */
+  z-index: 1;
+}
+
+.heading,
+.subheading,
+.topRow,
+.bottomRow {
+  position: relative;
+  z-index: 2; /* keep content above glow */
+}
+
+.heading {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.subheading {
+  color: var(--grey);
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ✅ Rows with centered, reduced width */
+.topRow,
+.bottomRow {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0 auto 1.5rem; /* center rows */
+  max-width: 1300px; /* control total width */
+}
+
+.topRow {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.bottomRow {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ----------------- CARD ----------------- */
+.card {
+  background: #0a0a0a; /* ✅ default background */
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: left;
+  border: 1px solid var(--navbar-bg-border);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+
+  /* ✅ inner shadow effect (left, right, bottom only) */
+  box-shadow: inset -4px 0px 12px rgba(255, 255, 255, 0.05),
+    /* left */ inset 4px 0px 12px rgba(255, 255, 255, 0.05),
+    /* right */ inset 0px -6px 16px rgba(255, 255, 255, 0.07),
+    /* bottom */ 0 6px 22px rgba(0, 0, 0, 0.45); /* keep original outer shadow */
+}
+
+/* ✅ Hover background change */
+.card:hover {
+  background: rgba(26, 26, 26, 0.92);
+  box-shadow: inset -4px 0px 12px rgba(255, 255, 255, 0.05),
+    inset 4px 0px 12px rgba(255, 255, 255, 0.05),
+    inset 0px -6px 16px rgba(255, 255, 255, 0.07),
+    0 8px 28px rgba(0, 0, 0, 0.55); /* stronger hover shadow */
+}
+
+/* Smoky effect sides + bottom (kept from your code) */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 18px;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ----------------- ICON ----------------- */
+.icon {
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+  transition: color 0.3s ease;
+}
+
+.card:hover .icon {
+  color: var(--primary); /* yellow on hover */
+}
+
+/* ----------------- TITLE ----------------- */
+.title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: var(--white);
+  transition: color 0.3s ease;
+}
+
+.card:hover .title {
+  color: var(--primary); /* yellow on hover */
+}
+
+/* ----------------- TEXT ----------------- */
+.text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--grey);
+  transition: color 0.3s ease;
+}
+
+.card:hover .text {
+  color: #ddd; /* brighter text on hover */
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .topRow,
+  .bottomRow {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./herosection.module.css";
 import GlobalStyles from "@/app/page.module.css";
-
+import StatsSection from "@/components/statssection/statssection";
 export default function HeroSection() {
   return (
     <section className={styles.hero}>
@@ -22,6 +22,9 @@ export default function HeroSection() {
 
           <button className={GlobalStyles.outlineBtn}>Partner with Us</button>
         </div>
+      </div>
+        <div className={styles.statsWrapperInsideHero}>
+        <StatsSection />
       </div>
     </section>
   );

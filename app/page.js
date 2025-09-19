@@ -7,7 +7,9 @@ import Partners from "@/components/partners/partners";
 import FestGoers from "@/components/festgoers/festgoers";
 import LatestBlogs from "@/components/latestblogs/latestblogs";
 import ConnectUs from "../components/connectus/connectus";
-
+import AboutUs from "@/components/aboutus/aboutus.jsx";
+import FestOrganisers from "@/components/festorganisers/festorganisers.jsx";
+import DiscoverFests from "@/components/discoverfests/discoverfests";
 export default function Home() {
   function generateScatteredPositions(count, minGap = 8) {
     const positions = [];
@@ -53,9 +55,13 @@ export default function Home() {
 
       <NavBar />
       <div className={styles.glow}></div>
-      <HeroSection />
-      <HowWeHelp />
+      <HeroSection className={styles.glow} />
+      <AboutUs />
       <Partners />
+      <FestOrganisers />
+      <DiscoverFests />
+      <HowWeHelp />
+
       <FestGoers />
       <LatestBlogs />
       <ConnectUs />
