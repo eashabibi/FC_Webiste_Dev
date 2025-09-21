@@ -14,7 +14,7 @@ export default function ConnectUs() {
           </p>
 
           <div className={styles.talkList}>
-            <h4>LET’S TALK ABOUT:</h4>
+            <h4>LET’S TALK ABOUT :</h4>
             <ul>
               <li>Custom Solutions for Your College</li>
               <li>Scheduling a Demo or Consultation</li>
@@ -28,21 +28,43 @@ export default function ConnectUs() {
         <div className={styles.formBox}>
           <form>
             <div className={styles.row}>
-              <input type="text" placeholder="Name*" />
-              <input type="text" placeholder="College Name*" />
+              <div className={styles.inputGroup}>
+                <label htmlFor="name">Name*</label>
+                <input id="name" type="text" placeholder="Name" />
+              </div>
+              <div className={styles.inputGroup}>
+                <label htmlFor="college">College Name*</label>
+                <input id="college" type="text" placeholder="College Name" />
+              </div>
             </div>
-            <input type="email" placeholder="Email*" />
+
+            <div className={styles.inputGroup}>
+              <label htmlFor="email">Email*</label>
+              <input id="email" type="email" placeholder="Email" />
+            </div>
+
             <div className={styles.row}>
-              <input type="tel" placeholder="Phone Number*" />
-              <select>
-                <option>Select</option>
-                <option>Custom Solutions</option>
-                <option>Demo</option>
-                <option>Partnership</option>
-                <option>General Support</option>
-              </select>
+              <div className={styles.inputGroup}>
+                <label htmlFor="phone">Phone Number*</label>
+                <input id="phone" type="tel" placeholder="Phone Number" />
+              </div>
+              <div className={styles.inputGroup}>
+                <label htmlFor="query">Query Regarding</label>
+                <select id="query">
+                  <option value="">Select</option>
+                  <option>Custom Solutions</option>
+                  <option>Demo</option>
+                  <option>Partnership</option>
+                  <option>General Support</option>
+                </select>
+              </div>
             </div>
-            <textarea placeholder="Message"></textarea>
+
+            <div className={styles.inputGroup}>
+              <label htmlFor="message">Message</label>
+              <textarea id="message" placeholder="Message"></textarea>
+            </div>
+
             <button type="submit">Book A Call</button>
           </form>
         </div>

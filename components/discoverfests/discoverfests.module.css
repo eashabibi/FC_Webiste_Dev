@@ -1,139 +1,48 @@
+/* ---------------- MAIN SECTION ---------------- */
 .discover {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 4rem;
-  padding: 6rem 2rem;
+  padding: 6rem 2rem 8rem;
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
-}
-.logo {
-  width: 120px;
-  margin-bottom: 2rem;
-  display: block;
-  margin-left: 150px;
+  flex-wrap: wrap;
 }
 
-/* ---------------- Toggle Buttons ---------------- */
-
-/* ---------------- Toggle Buttons ---------------- */
-
-.toggleGroup {
-  display: inline-flex;
-  position: relative;
-  background: #1a1a1a;
-  border-radius: 30px;
-  padding: 4px;
-  overflow: hidden;
-}
-
-/* Sliding background pill */
-.toggleGroup::before {
-  content: "";
-  position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 4px;
-  width: calc(50% - 4px); /* half width */
-  border-radius: 30px;
-  background: #0b3d2e; /* ✅ flat green */
-  transition: transform 0.3s ease;
-  z-index: 1;
-}
-
-/* Active states: slide left/right */
-.toggleGroup.students::before {
-  transform: translateX(0%);
-}
-.toggleGroup.colleges::before {
-  transform: translateX(100%);
-}
-
-.toggleBtn {
-  position: relative;
-  flex: 1;
-  min-width: 120px;       /* ✅ ensures enough space for text */
-  white-space: nowrap;    /* ✅ prevents text wrapping */
-  padding: 0.6rem 1.8rem;
-  border: none;
-  border-radius: 30px;
-  background: transparent;
-  color: #aaa;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: color 0.25s ease;
-  z-index: 2; /* above background pill */
-}
-
-
-.toggleBtn:hover {
-  color: #fff;
-}
-
-.toggleBtn.active {
-  color: #fff;
-}
-
+/* ---------------- LEFT CONTENT ---------------- */
 .content {
   flex: 1;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .heading {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--primary, #ffd700);
   margin-bottom: 1rem;
+}
+
+.logo {
+  width: 80px;
+  margin: 1rem 0 2rem;
+  display: block;
 }
 
 .subheading {
   font-size: 1.1rem;
-  color: var(--grey);
+  color: var(--grey, #aaa);
   line-height: 1.6;
-  max-width: 500px;
-  margin-bottom: 2.5rem;
+  max-width: 420px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
 }
 
-.buttons {
-  display: flex;
-  gap: 1rem;
-}
-
-.studentBtn {
-  padding: 0.75rem 1.8rem;
-  border-radius: 25px;
-  border: none;
-  background: var(--secondary-grad);
-  color: var(--white);
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.studentBtn:hover {
-  background: #02a36f;
-}
-
-.collegeBtn {
-  padding: 0.75rem 1.8rem;
-  border-radius: 25px;
-  border: none;
-  background: #1c1c1c;
-  color: var(--grey);
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.collegeBtn:hover {
-  background: #2a2a2a;
-  color: var(--white);
-}
-
+/* ---------------- RIGHT SIDE ---------------- */
 .phoneWrapper {
   flex: 1;
   position: relative;
@@ -141,74 +50,252 @@
   justify-content: center;
 }
 
+/* ---------------- TOGGLE GROUP ---------------- */
+.toggleGroup {
+  display: inline-flex;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a; /* outer capsule */
+  border-radius: 40px;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.toggleBtn {
+  flex: 1;
+  min-width: 160px;
+  white-space: nowrap;
+  padding: 0.9rem 2rem;
+  border: none;
+  background: transparent;
+  color: #aaa;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.35s ease, color 0.35s ease;
+  border-radius: 0;
+  z-index: 1;
+}
+
+.toggleBtn.active {
+  background: #0b3d2e; /* dark green background */
+  border: 2px solid #028559; /* bright green outline */
+  color: #fff;
+  border-radius: 40px; /* rounded pill shape */
+}
+
+.toggleBtn:not(.active):hover {
+  color: #fff;
+}
+
+/* ✅ Responsive position adjustment */
+@media (max-width: 640px) {
+  .toggleGroup {
+    bottom: 1.5rem;
+  }
+}
+
+/* ✅ Left Glow - Bright Silver */
+.phoneWrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 51%;
+  width: 200px;
+  height: 350px;
+  transform: translateY(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(220, 220, 220, 0.6) 40%,
+    transparent 80%
+  );
+  filter: blur(70px);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+/* ✅ Right Glow - Bright Silver */
+.phoneWrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 19%;
+  width: 200px;
+  height: 350px;
+  transform: translateY(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(220, 220, 220, 0.6) 40%,
+    transparent 80%
+  );
+  filter: blur(70px);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  animation: pulseGlow 6s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+}
+
 .phone {
   width: 340px;
-  transform: rotate(-8deg); /* slant the phone */
-  z-index: 2;
-  filter: drop-shadow(0px 12px 30px rgba(0, 0, 0, 0.8));
+  transform: rotate(5deg);
+  z-index: 2; /* ✅ above glow */
+  filter: drop-shadow(0px 20px 40px rgba(0, 0, 0, 0.9));
+  transition: transform 1.2s ease-in-out, filter 1.2s ease-in-out;
 }
 
-/* Emojis around phone */
+/* ---------------- EMOJIS ---------------- */
 .emoji {
   position: absolute;
-  top: 15%;
-  right: 5%;
+  z-index: 3;
+}
+
+/* ✅ Emoji + Content Animations */
+@keyframes fadeInSmooth {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fadeOutSmooth {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.6) translateY(-25px);
+  }
+}
+
+.fadeInEmoji {
+  animation: fadeInSmooth 1.2s ease-in-out forwards;
+}
+.fadeOutEmoji {
+  animation: fadeOutSmooth 1.2s ease-in-out forwards;
+}
+
+.fadeInContent {
+  animation: fadeInSmooth 1.2s ease-in-out forwards;
+}
+.fadeOutContent {
+  animation: fadeOutSmooth 1.2s ease-in-out forwards;
+}
+
+/* -------- Screen 1 -------- */
+.screen1Face {
+  top: 35%;
+  right: 22%;
   width: 60px;
-  z-index: 3;
+}
+.screen1Mirror {
+  top: 48%;
+  left: 22%;
+  width: 60px;
+}
+.screen1Fire {
+  bottom: 8%;
+  right: 34%;
+  width: 60px;
 }
 
-.mirror {
-  position: absolute;
-  bottom: 20%;
-  left: 8%;
-  width: 50px;
-  z-index: 3;
+/* -------- Screen 2 -------- */
+.screen2Collision {
+  top: 20%;
+  left: 31%;
+  width: 60px;
+}
+.screen2V {
+  bottom: 15%;
+  right: 30%;
+  width: 60px;
 }
 
-.fire {
-  position: absolute;
-  bottom: 5%;
-  right: 10%;
+/* -------- Screen 3 -------- */
+.screen3Links {
+  top: 50%;
+  left: 23%;
+  width: 60px;
+}
+.screen3Unlocked {
+  top: 15%;
+  right: 18%;
+  width: 60px;
+}
+.screen3Phone {
+  bottom: 8%;
+  right: 32%;
+  width: 60px;
+}
+
+/* -------- Screen 4 -------- */
+.screen4Card {
+  top: 13%;
+  left: 28%;
+  width: 60px;
+}
+.screen4Cart {
+  bottom: 25%;
+  right: 27%;
   width: 55px;
-  z-index: 3;
 }
 
-/* ---------------- Responsive ---------------- */
+
+/* Emoji animations for overlap */
+.fadeInEmoji {
+  animation: fadeInScale 1.2s ease-in-out forwards;
+}
+.fadeOutEmoji {
+  animation: fadeOutScale 1.2s ease-in-out forwards;
+}
+
+@keyframes fadeInScale {
+  0% { opacity: 0; transform: scale(0.7) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes fadeOutScale {
+  0% { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(0.7) translateY(-20px); }
+}
+
+
+/* ---------------- RESPONSIVE ---------------- */
 @media (max-width: 1024px) {
   .discover {
     flex-direction: column;
     text-align: center;
     gap: 3rem;
-  }
-
-  .content {
-    text-align: center;
-  }
-
-  .subheading {
-    margin: 0 auto 2rem;
+    padding-bottom: 6rem;
   }
 
   .phone {
     width: 280px;
     transform: rotate(-6deg);
   }
-
   .emoji {
-    top: 10%;
-    right: 15%;
-    width: 45px;
-  }
-
-  .mirror {
-    bottom: 18%;
-    left: 15%;
-    width: 40px;
-  }
-
-  .fire {
-    bottom: 5%;
-    right: 15%;
     width: 45px;
   }
 }
@@ -217,31 +304,61 @@
   .heading {
     font-size: 2rem;
   }
-
   .subheading {
     font-size: 1rem;
+    max-width: 300px;
   }
-
   .phone {
     width: 230px;
     transform: rotate(-5deg);
   }
 
-  .emoji {
-    top: 8%;
-    right: 12%;
+  .screen1Face {
+    top: 15%;
+    right: 5%;
     width: 38px;
   }
-
-  .mirror {
-    bottom: 15%;
+  .screen1Mirror {
+    top: 35%;
     left: 10%;
     width: 35px;
   }
+  .screen1Fire {
+    bottom: 8%;
+    right: 10%;
+    width: 40px;
+  }
 
-  .fire {
-    bottom: 2%;
-    right: 12%;
+  .screen2Collision {
+    top: 15%;
+    right: 10%;
+    width: 40px;
+  }
+  .screen2V {
+    bottom: 12%;
+    right: 8%;
+    width: 35px;
+  }
+
+  .screen3Links {
+    top: 30%;
+    left: 8%;
+    width: 35px;
+  }
+  .screen3Unlocked {
+    top: 12%;
+    right: 10%;
+    width: 35px;
+  }
+
+  .screen4Card {
+    top: 20%;
+    left: 10%;
+    width: 40px;
+  }
+  .screen4Cart {
+    bottom: 8%;
+    right: 10%;
     width: 38px;
   }
 }

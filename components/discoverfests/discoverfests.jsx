@@ -1,59 +1,116 @@
-"use client"; // ✅ needed in Next.js app directory
+"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./discoverfests.module.css";
 
 export default function DiscoverFests() {
+  const [index, setIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("students");
+  const [transitioning, setTransitioning] = useState(false);
+
+  // Auto-play every 4s with transition
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTransitioning(true); // start fade out
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % 4); // switch screen
+        setTransitioning(false); // fade in
+      }, 600); // match animation duration
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const screens = [
+    {
+      heading: "Discover Fests Across India",
+      logo: "/ekd_logo.png",
+      text: "Explore the most exciting college festivals happening near you or across the country — all in one place.",
+      phone: "/mobile_mockup.png",
+      emojis: [
+        { src: "/faceemoji.png", className: "screen1Face" },
+        { src: "/mirror ball.png", className: "screen1Mirror" },
+        { src: "/fire.png", className: "screen1Fire" },
+      ],
+    },
+    {
+      heading: "One App, Everything Fest",
+      logo: "/ekd_logo.png",
+      text: "From event lineups to campus maps, schedules to merch — get it all in one sleek, scrollable feed.",
+      phone: "/mob2.png",
+      emojis: [
+        { src: "/collision.png", className: "screen2Collision" },
+        { src: "/v.png", className: "screen2V" },
+      ],
+    },
+    {
+      heading: "One QR. All Access.",
+      logo: "/ekd_logo.png",
+      text: "Your universal fest pass. No wristbands, no paper — just one QR to rule them all.",
+      phone: "/mob3.png",
+      emojis: [
+        { src: "/links.png", className: "screen3Links" },
+        { src: "/unlocked.png", className: "screen3Unlocked" },
+        { src: "/mobilephonewitharrow.png", className: "screen3Phone" },
+      ],
+    },
+    {
+      heading: "No Internet? Still Pay",
+      logo: "/ekd_logo.png",
+      text: "Top-up once and go cashless at food stalls, merch booths, and more — even without internet.",
+      phone: "/mob4.png",
+      emojis: [
+        { src: "/credit card.png", className: "screen4Card" },
+        { src: "/shopping cart.png", className: "screen4Cart" },
+      ],
+    },
+  ];
+
+  const screen = screens[index];
 
   return (
     <section className={styles.discover}>
-      <div className={styles.content}>
-        <h2 className={styles.heading}>Discover Fests Across India</h2>
-
-        {/* ✅ EKD Logo */}
-        <img src="/ekd_logo.png" alt="EKD Logo" className={styles.logo} />
-
-        <p className={styles.subheading}>
-          Explore the most exciting college festivals happening near you or
-          across the country — all in one place.
-        </p>
-
-        {/* ✅ Toggle Group with sliding background */}
-        <div
-          className={`${styles.toggleGroup} ${
-            activeTab === "students" ? styles.students : styles.colleges
-          }`}
-        >
-          <button
-            className={`${styles.toggleBtn} ${
-              activeTab === "students" ? styles.active : ""
-            }`}
-            onClick={() => setActiveTab("students")}
-          >
-            For Students
-          </button>
-          <button
-            className={`${styles.toggleBtn} ${
-              activeTab === "colleges" ? styles.active : ""
-            }`}
-            onClick={() => setActiveTab("colleges")}
-          >
-            For Colleges
-          </button>
-        </div>
+      {/* LEFT CONTENT */}
+      <div className={`${styles.content} ${styles.fadeIn}`}>
+        <h2 className={styles.heading}>{screen.heading}</h2>
+        {screen.logo && (
+          <img src={screen.logo} alt="EKD Logo" className={styles.logo} />
+        )}
+        <p className={styles.subheading}>{screen.text}</p>
       </div>
 
-      {/* Right Side: Phone + Emojis */}
-      <div className={styles.phoneWrapper}>
-        <img
-          src="/mobile_mockup.png"
-          alt="Mobile Mockup"
-          className={styles.phone}
-        />
-        <img src="/emoji.png" alt="emoji" className={styles.emoji} />
-        <img src="/mirror ball.png" alt="mirror ball" className={styles.mirror} />
-        <img src="/fire.png" alt="fire" className={styles.fire} />
+      {/* PHONE + EMOJIS */}
+      <div className={`${styles.phoneWrapper} ${styles.slideIn}`}>
+        <img src={screen.phone} alt="Phone" className={styles.phone} />
+        {screen.emojis.map((emoji, i) => (
+          <img
+            key={i}
+            src={emoji.src}
+            alt={`emoji-${i}`}
+            className={`${styles.emoji} ${styles[emoji.className]} ${
+              transitioning ? styles.fadeOutEmoji : styles.fadeInEmoji
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* ✅ TOGGLE BUTTONS */}
+      <div className={styles.toggleGroup}>
+        <button
+          className={`${styles.toggleBtn} ${
+            activeTab === "students" ? styles.active : ""
+          }`}
+          onClick={() => setActiveTab("students")}
+        >
+          For Students
+        </button>
+        <button
+          className={`${styles.toggleBtn} ${
+            activeTab === "colleges" ? styles.active : ""
+          }`}
+          onClick={() => setActiveTab("colleges")}
+        >
+          For Colleges
+        </button>
       </div>
     </section>
   );
